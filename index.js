@@ -65,12 +65,14 @@ app.post('/api/shorturl', (req, res) => {
     realUrl = new URL(longUrl);
   } catch(error) {
     console.error('URL error:', error);
-    res.status(400).json({ error: 'invalid url' });
+    //res.status(400).json({ error: 'invalid url' });
+    res.json({ error: 'invalid url' });
   }
   
   dns.lookup(realUrl.hostname, (err, address, family) => {
     if(err){
-      res.status(400).json({ error: 'invalid url' });
+      //res.status(400).json({ error: 'invalid url' });
+      res.json({ error: 'invalid url' });
     }
     else {
       const shortUrl = mapURL(longUrl);
